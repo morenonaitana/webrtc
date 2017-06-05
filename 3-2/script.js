@@ -136,7 +136,7 @@ function createConnection() {
   }
   // Handler to be called whenever a new remote ICE candidate becomes available
   function gotRemoteIceCandidate(event) {
-    log('remote ice callback');
+    log('remote ice callback', event);
     if (event.candidate) {
       localPeerConnection.addIceCandidate(event.candidate);
       log('Remote ICE candidate: \n ' + event.candidate.candidate);
@@ -165,7 +165,6 @@ function createConnection() {
   // Handler for either 'open' or 'close' events on sender's data channel
   function handleSendChannelStateChange() {
     var readyState = sendChannel.readyState;
-    console.log('READYSTATE =====================================================', readyState)
     log('Send channel state is: ' + readyState);
     if (readyState == "open") {
       // Enable 'Send' text area and set focus on it
